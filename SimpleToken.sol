@@ -11,12 +11,7 @@ contract MyToken is ERC20, Ownable {
         
     }
 
-    modifier onlyAuthorized() {
-        require(owner() == msg.sender);
-        _;
-    }
-
-    function mint(address to, uint amount) external onlyAuthorized {
+    function mint(address to, uint amount) external onlyOwner {
         _mint(to, amount);
     }
 

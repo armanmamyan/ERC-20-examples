@@ -10,16 +10,11 @@ contract DevToken is ERC20Capped, Ownable  {
     constructor(uint256 cap) ERC20("DevToken", "DVT") ERC20Capped(cap) {
     }
 
-    modifier onlyAuthorized() {
-        require(owner() == msg.sender);
-        _;  
-    }
-
-    function issueToken() public onlyAuthorized {
+    function issueToken() public onlyOwner {
         _mint(msg.sender, 100000 * 10 ** 18);
     }
 
-    function mint(address to, uint amount) external onlyAuthorized {
+    function mint(address to, uint amount) external onlyOwner {
         _mint(to, amount);
     }
 
